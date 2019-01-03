@@ -3,11 +3,15 @@
 This plugin allows to create a commit message with the following template:
 
 ```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+<Commit Title>
+
+<Ticket ID/s>
+<Summary of what changes go in the commit>
+?Caveats?
+?A list of projects/tickets the commit impacts or affects?
+?security rules?
+<How to test>
+
 ```
 
 From the contribution guidelines of the Angular project [here](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format).
