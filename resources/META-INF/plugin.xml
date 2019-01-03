@@ -1,19 +1,22 @@
 <idea-plugin>
     <id>commit-template-idea-plugin</id>
     <name>Git Commit Template</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 
-    <vendor email="damien.arrachequesne@gmail.com" />
+    <vendor email="damien.arrachequesne@gmail.com"/>
 
     <description><![CDATA[
         <p>Create a commit message with the following template:</p>
 
         <pre>
-        &lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
-        &lt;BLANK LINE&gt;
-        &lt;body&gt;
-        &lt;BLANK LINE&gt;
-        &lt;footer&gt;
+        &lt;Commit Title&gt;
+
+        &lt;Ticket ID/s&gt;
+        &lt;Summary of what changes go in the commit&gt;
+        ?Caveats?
+        ?A list of projects/tickets the commit impacts or affects?
+        ?security rules?
+        &lt;How to test&gt;
         </pre>
     ]]></description>
 

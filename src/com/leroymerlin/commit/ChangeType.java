@@ -7,8 +7,8 @@ package com.leroymerlin.commit;
  */
 public enum ChangeType {
 
-    FEAT("Features", "A new feature"),
-    FIX("Bug Fixes", "A bug fix"),
+    FEAT("Feature", "A new feature"),
+    FIX("Bug Fixe", "A bug fix"),
     DOCS("Documentation", "Documentation only changes"),
     STYLE("Styles", "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"),
     REFACTOR("Code Refactoring", "A code change that neither fixes a bug nor adds a feature"),
@@ -28,11 +28,11 @@ public enum ChangeType {
     }
 
     public String label() {
-        return this.name().toLowerCase();
+        return this.title.toLowerCase();
     }
 
     @Override
     public String toString() {
-        return String.format("%s - %s", this.label(), this.description);
+        return String.format("%s - %s", this.title, this.description);
     }
 }

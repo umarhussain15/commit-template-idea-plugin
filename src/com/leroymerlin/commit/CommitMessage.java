@@ -11,11 +11,16 @@ class CommitMessage {
     private static final int MAX_LINE_LENGTH = 72; // https://stackoverflow.com/a/2120040/5138796
     private final String content;
 
-    CommitMessage(ChangeType changeType, String changeScope, String shortDescription, String longDescription, String closedIssues, String breakingChanges) {
-        this.content = buildContent(changeType, changeScope, shortDescription, longDescription, closedIssues, breakingChanges);
+    CommitMessage(ChangeType changeType, String changeScope, String shortDescription, String longDescription,
+                  String caveatsSummary, String impacts, String securityRules, String jiraTicketId, String howToTest,
+                  String smartCommits) {
+        this.content = buildContent(changeType, changeScope, shortDescription, longDescription, caveatsSummary,
+                impacts, securityRules, jiraTicketId, howToTest, smartCommits);
     }
 
-    private String buildContent(ChangeType changeType, String changeScope, String shortDescription, String longDescription, String closedIssues, String breakingChanges) {
+    private String buildContent(ChangeType changeType, String changeScope, String shortDescription, String longDescription,
+                                String caveatsSummary, String impacts, String securityRules, String jiraTicketId, String howToTest,
+                                String smartCommits) {
         StringBuilder builder = new StringBuilder();
         builder.append(changeType.label());
         if (isNotBlank(changeScope)) {
@@ -28,25 +33,20 @@ class CommitMessage {
                 .append(": ")
                 .append(shortDescription)
                 .append(System.lineSeparator())
-                .append(System.lineSeparator())
-                .append(WordUtils.wrap(longDescription, MAX_LINE_LENGTH));
+                .append(System.lineSeparator());
+        builder.append("Ticket: ").append(jiraTicketId).append(System.lineSeparator());
+        builder.append("Summary: ").append(WordUtils.wrap(longDescription, MAX_LINE_LENGTH)).append(System.lineSeparator());
+        if (isNotBlank(caveatsSummary))
+            builder.append("Caveat: ").append(caveatsSummary).append(System.lineSeparator());
+        if (isNotBlank(impacts))
+            builder.append("Impact: ").append(impacts).append(System.lineSeparator());
+        if (isNotBlank(securityRules))
+            builder.append("Security Rules: ").append(securityRules).append(System.lineSeparator());
+        if (isNotBlank(howToTest))
+            builder.append("Test: ").append(howToTest).append(System.lineSeparator());
+        if (isNotBlank(smartCommits))
+            builder.append(smartCommits).append(System.lineSeparator());
 
-        if (isNotBlank(breakingChanges)) {
-            builder
-                    .append(System.lineSeparator())
-                    .append(System.lineSeparator())
-                    .append(WordUtils.wrap("BREAKING CHANGE: " + breakingChanges, MAX_LINE_LENGTH));
-        }
-
-        if (isNotBlank(closedIssues)) {
-            builder.append(System.lineSeparator());
-            for (String closedIssue : closedIssues.split(",")) {
-                builder
-                        .append(System.lineSeparator())
-                        .append("Closes ")
-                        .append(closedIssue);
-            }
-        }
 
         return builder.toString();
     }

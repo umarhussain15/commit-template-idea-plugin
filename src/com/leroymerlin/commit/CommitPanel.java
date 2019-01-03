@@ -15,8 +15,12 @@ public class CommitPanel {
     private JComboBox changeScope;
     private JTextField shortDescription;
     private JTextArea longDescription;
-    private JTextField closedIssues;
-    private JTextArea breakingChanges;
+    private JTextField jiraTicketId;
+    private JTextField securityRules;
+    private JTextField smartCommitCommand;
+    private JTextField caveatsSummary;
+    private JTextField impacts;
+    private JTextField howToTest;
 
     CommitPanel(Project project) {
         for (ChangeType type : ChangeType.values()) {
@@ -39,8 +43,12 @@ public class CommitPanel {
                 (String) changeScope.getSelectedItem(),
                 shortDescription.getText().trim(),
                 longDescription.getText().trim(),
-                closedIssues.getText().trim(),
-                breakingChanges.getText().trim()
+                caveatsSummary.getText().trim(),
+                impacts.getText().trim(),
+                securityRules.getText().trim(),
+                jiraTicketId.getText().trim(),
+                howToTest.getText().trim(),
+                smartCommitCommand.getText().trim()
         );
     }
 
